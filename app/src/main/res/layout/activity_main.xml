@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/activity_hue"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+
+>
+
+    <Button
+        android:id="@+id/btn_hue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:onClick="onButtonClick"
+        android:text="HueActivity"/>
+
+    <Button
+        android:id="@+id/btn_colorMatrix"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:onClick="onButtonClick"
+        android:text="colorMatrixActivity"/>
+
+    <Button
+        android:id="@+id/btn_imageEffect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:onClick="onButtonClick"
+        android:text="imageEffectActivity"/>
+
+</LinearLayout>
