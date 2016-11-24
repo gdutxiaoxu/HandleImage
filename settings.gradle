@@ -1,2 +1,4 @@
 include ':app', ':ImageDemo', ':coordinatematrix'
+
 include ':showPicture'
+include ':fuzzyQueryContacts'

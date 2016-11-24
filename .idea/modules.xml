@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/ImageDemo/ImageDemo.iml" filepath="$PROJECT_DIR$/ImageDemo/ImageDemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/coordinatematrix/coordinatematrix.iml" filepath="$PROJECT_DIR$/coordinatematrix/coordinatematrix.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fuzzyQueryContacts/fuzzyQueryContacts.iml" filepath="$PROJECT_DIR$/fuzzyQueryContacts/fuzzyQueryContacts.iml" />
       <module fileurl="file://$PROJECT_DIR$/showPicture/showPicture.iml" filepath="$PROJECT_DIR$/showPicture/showPicture.iml" />
     </modules>
   </component>

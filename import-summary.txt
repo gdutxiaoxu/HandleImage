@@ -7,7 +7,6 @@ The following files were *not* copied into the new Gradle project; you
 should evaluate whether these are still needed in your project and if
 so manually move them:
 
-* Lenna.jpg
 * ic_launcher-web.png
 * proguard-project.txt
 
@@ -28,10 +27,12 @@ Moved Files:
 Android Gradle projects use a different directory structure than ADT
 Eclipse projects. Here's how the projects were restructured:
 
-* AndroidManifest.xml => showPicture\src\main\AndroidManifest.xml
-* assets\ => showPicture\src\main\assets
-* res\ => showPicture\src\main\res\
-* src\ => showPicture\src\main\java\
+* AndroidManifest.xml => fuzzyQueryContacts\src\main\AndroidManifest.xml
+* assets\ => fuzzyQueryContacts\src\main\assets\
+* lint.xml => fuzzyQueryContacts\lint.xml
+* res\ => fuzzyQueryContacts\src\main\res\
+* src\ => fuzzyQueryContacts\src\main\java\
+* show_head_toast_bg.9.PNG => show_head_toast_bg.9.png
 
 Missing Android Support Repository:
 -----------------------------------
