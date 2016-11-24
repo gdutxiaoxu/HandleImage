@@ -1,1 +1,2 @@
-include ':app', ':ImageDemo'
+include ':app', ':ImageDemo', ':coordinatematrix', ':QuickIndex-master'
+include ':showPicture'

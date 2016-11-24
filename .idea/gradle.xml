@@ -9,7 +9,10 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/ImageDemo" />
+            <option value="$PROJECT_DIR$/QuickIndex-master" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/coordinatematrix" />
+            <option value="$PROJECT_DIR$/showPicture" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
