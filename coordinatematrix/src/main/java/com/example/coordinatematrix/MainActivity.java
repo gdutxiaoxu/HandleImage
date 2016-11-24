@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridLayout;
@@ -12,8 +13,6 @@ import android.widget.GridLayout;
 public class MainActivity extends AppCompatActivity {
 
     private ImageMatrixView iv;
-
-
 
     private GridLayout mGlGroup;
     private Button mBtnChange;
@@ -25,8 +24,10 @@ public class MainActivity extends AppCompatActivity {
 
     EditText[] mEditTexts = new EditText[count];
 
-   float[] mMatrixs = new float[count];
+    float[] mMatrixs = new float[count];
     private int mWidth;
+
+    private int mHeight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +41,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         mGlGroup.post(new Runnable() {
-
-            private int mHeight;
 
             @Override
             public void run() {
@@ -68,7 +67,9 @@ public class MainActivity extends AppCompatActivity {
     private void initEditTexts() {
         for (int i = 0; i < count; i++) {
             EditText editText = new EditText(this);
-            editText.setWidth();
+            ViewGroup.MarginLayoutParams marginLayoutParams = new ViewGroup.MarginLayoutParams
+                    (mWidth / 3, mHeight / 3);
+            editText.setLayoutParams(marginLayoutParams);
             editText.setGravity(Gravity.CENTER);
             mGlGroup.addView(editText);
             mEditTexts[i] = editText;
