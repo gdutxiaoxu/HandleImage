@@ -23,6 +23,10 @@ public class MainActivity extends AppCompatActivity {
                 jump(ImageMatrixActivity2.class);
                 break;
 
+            case R.id.btn_third:
+                jump(ImageMatrixxActivity3.class);
+                break;
+
         }
     }
 
