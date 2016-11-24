@@ -34,9 +34,9 @@ public class ImageHelper {
         imageMatrix.postConcat(hueMatrix);
         imageMatrix.postConcat(saturationMatrix);
         imageMatrix.postConcat(lumMatrix);
-
+        //这里是 通过给画笔设置相关的 属性 改变bitmap
         paint.setColorFilter(new ColorMatrixColorFilter(imageMatrix));
-        //        需要注意的 是 这里的 bm是原来的bitmap，不是新创建的bitmap
+        //   需要注意的 是 这里的 bm是原来的bitmap，不是新创建的bitmap
 
         canvas.drawBitmap(bm, 0, 0, paint);
 
@@ -57,7 +57,7 @@ public class ImageHelper {
         int[] newPixels = new int[width * height];
         int[] oldPixels = new int[width * height];
 
-        //        得到图片矩阵的 每一个像素
+        //    得到图片矩阵的 每一个像素
         Bitmap bmp = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         bp.getPixels(oldPixels, 0, width, 0, 0, width, height);
         for (int i = 0; i < oldPixels.length; i++) {
@@ -76,7 +76,7 @@ public class ImageHelper {
             b = fix(b);
             newPixels[i] = Color.argb(a, r, g, b);
         }
-
+        //给bitmap设置每一个  像素点
         bmp.setPixels(newPixels, 0, width, 0, 0, width, height);
         return bmp;
     }
@@ -103,7 +103,7 @@ public class ImageHelper {
             r1 = (int) (0.393 * r + 0.769 * g + 0.189 * b);
             g1 = (int) (0.349 * r + 0.686 * g + 0.168 * b);
             b1 = (int) (0.272 * r + 0.534 * g + 0.131 * b);
-            r1= fix(r1);
+            r1 = fix(r1);
             g1 = fix(g1);
             b1 = fix(b1);
 

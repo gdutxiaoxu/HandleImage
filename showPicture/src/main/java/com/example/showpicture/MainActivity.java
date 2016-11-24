@@ -1,8 +1,6 @@
 package com.example.showpicture;
 
-import java.io.FileNotFoundException;
 import android.app.Activity;
-import android.app.ActionBar;
 import android.app.Fragment;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -21,246 +19,247 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.os.Build;
+
+import java.io.FileNotFoundException;
 
 public class MainActivity extends Activity {
-	
-	private Button selectBn;
-	private ImageView imageShow;
-	private ImageView imageCreate;
-	private TextView textview1;
-	private TextView textview2;
-	private Bitmap bmp; //Ô­Ê¼Í¼Æ¬
-	
-	//Í¼Æ¬±ä»»²ÎÊı
-	private float smallbig=1.0f;   //Ëõ·Å±ÈÀı
-	private int turnRotate=0;       //Ğı×ª¶ÈÊı
-	private float saturation=0f;    //±¥ºÍ¶È
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-	    super.onCreate(savedInstanceState);
-	    setContentView(R.layout.activity_main);
-	    selectBn = (Button) findViewById(R.id.button1);
-	    imageShow = (ImageView) findViewById(R.id.imageView1);
-	    imageCreate = (ImageView) findViewById(R.id.imageView2);
-	    textview1 = (TextView) findViewById(R.id.textView1);
-	    textview2 = (TextView) findViewById(R.id.textView2);
-	    
-	    //Ñ¡ÔñÍ¼Æ¬
-	    selectBn.setOnClickListener(new OnClickListener() {
-	    	@Override
-	    	public void onClick(View v) {
-	    		Intent intent = new Intent(Intent.ACTION_PICK, 
-	    				android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-	    		startActivityForResult(intent, 0 );
-	    	}
-	    });
-    
-	 //ËõĞ¡Í¼Æ¬
-	Button button2=(Button)findViewById(R.id.button2);
-	button2.setOnClickListener(new OnClickListener() {
-		@Override
-		public void onClick(View v) {
-			SmallPicture();
-		}
-	});
-	//·Å´óÍ¼Æ¬
-	    Button button3=(Button)findViewById(R.id.button3);
-	    button3.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				BigPicture();
-			}
-		});
-	   //Ğı×ªÍ¼Æ¬
-	Button button4=(Button)findViewById(R.id.button4);
-	button4.setOnClickListener(new OnClickListener() {
-		@Override
-		public void onClick(View v) {
-			TurnPicture();
-		}
-	});
-	//Í¼Æ¬±¥ºÍ¶È¸Ä±ä
-	Button button5=(Button)findViewById(R.id.button5);
-	button5.setOnClickListener(new OnClickListener() {
-		@Override
-		public void onClick(View v) {
-			SaturationPicture();
-		}
-	});
-	//Í¼Æ¬¶Ô±È¶È¸Ä±ä
-	Button button6=(Button)findViewById(R.id.button6);
-	button6.setOnClickListener(new OnClickListener() {
-		@Override
-		public void onClick(View v) {
-			ContrastPicture();
-		}
-	});
-	
-    if (savedInstanceState == null) {
-        getFragmentManager().beginTransaction()
-                .add(R.id.container, new PlaceholderFragment())
-                .commit();
+    private Button selectBn;
+    private ImageView imageShow;
+    private ImageView imageCreate;
+    private TextView textview1;
+    private TextView textview2;
+    private Bitmap bmp; //åŸå§‹å›¾ç‰‡
+
+    //å›¾ç‰‡å˜æ¢å‚æ•°
+    private float smallbig=1.0f;   //ç¼©æ”¾æ¯”ä¾‹
+    private int turnRotate=0;       //æ—‹è½¬åº¦æ•°
+    private float saturation=0f;    //é¥±å’Œåº¦
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        selectBn = (Button) findViewById(R.id.button1);
+        imageShow = (ImageView) findViewById(R.id.imageView1);
+        imageCreate = (ImageView) findViewById(R.id.imageView2);
+        textview1 = (TextView) findViewById(R.id.textView1);
+        textview2 = (TextView) findViewById(R.id.textView2);
+
+        //é€‰æ‹©å›¾ç‰‡
+        selectBn.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_PICK,
+                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(intent, 0 );
+            }
+        });
+
+        //ç¼©å°å›¾ç‰‡
+        Button button2=(Button)findViewById(R.id.button2);
+        button2.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SmallPicture();
+            }
+        });
+        //æ”¾å¤§å›¾ç‰‡
+        Button button3=(Button)findViewById(R.id.button3);
+        button3.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BigPicture();
+            }
+        });
+        //æ—‹è½¬å›¾ç‰‡
+        Button button4=(Button)findViewById(R.id.button4);
+        button4.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TurnPicture();
+            }
+        });
+        //å›¾ç‰‡é¥±å’Œåº¦æ”¹å˜
+        Button button5=(Button)findViewById(R.id.button5);
+        button5.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SaturationPicture();
+            }
+        });
+        //å›¾ç‰‡å¯¹æ¯”åº¦æ”¹å˜
+        Button button6=(Button)findViewById(R.id.button6);
+        button6.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ContrastPicture();
+            }
+        });
+
+        if (savedInstanceState == null) {
+            getFragmentManager().beginTransaction()
+                    .add(R.id.container, new PlaceholderFragment())
+                    .commit();
+        }
     }
-}
 
-	//ÏÔÊ¾Á½ÕÅÍ¼Æ¬
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {  
-		super.onActivityResult(requestCode, resultCode, data);
-		if(resultCode==RESULT_OK) {
-			ShowPhotoByImageView(data);     //ÏÔÊ¾ÕÕÆ¬
-			CreatePhotoByImageView();          //´´½¨Í¼Æ¬
-		}
-	}
-	//×Ô¶¨Òåº¯Êı ÏÔÊ¾´ò¿ªµÄÕÕÆ¬ÔÚImageView1ÖĞ
-	public void ShowPhotoByImageView(Intent data) {
-		Uri imageFileUri = data.getData();
-		DisplayMetrics dm = new DisplayMetrics();
-		getWindowManager().getDefaultDisplay().getMetrics(dm);
-		int width = dm.widthPixels;    //ÊÖ»úÆÁÄ»Ë®Æ½·Ö±æÂÊ
-		int height = dm.heightPixels;  //ÊÖ»úÆÁÄ»´¹Ö±·Ö±æÂÊ
-		Log.v("height", ""+height );
-		Log.v("width", ""+width);
-		try {
-			// Load up the image's dimensions not the image itself
-			BitmapFactory.Options bmpFactoryOptions = new BitmapFactory.Options();
-			bmpFactoryOptions.inJustDecodeBounds = true;
-			bmp = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageFileUri), null, bmpFactoryOptions);
-			int heightRatio = (int)Math.ceil(bmpFactoryOptions.outHeight/(float)height);
-			int widthRatio = (int)Math.ceil(bmpFactoryOptions.outWidth/(float)width);
-			Log.v("bmpheight", ""+bmpFactoryOptions.outHeight);
-			Log.v("bmpheight", ""+bmpFactoryOptions.outWidth);
-			if(heightRatio>1&&widthRatio>1) {
-				if(heightRatio>widthRatio) {
-					bmpFactoryOptions.inSampleSize = heightRatio*2;
-				}
-				else {
-					bmpFactoryOptions.inSampleSize = widthRatio*2;
-				}
-			}
-			 //Í¼ÏñÕæÕı½âÂë   
-		    bmpFactoryOptions.inJustDecodeBounds = false;      		    
-		    bmp = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageFileUri), null, bmpFactoryOptions);  
-		    imageShow.setImageBitmap(bmp); //½«¼ô²ÃºóÕÕÆ¬ÏÔÊ¾³öÀ´  
-		    textview1.setVisibility(View.VISIBLE);
-		} catch(FileNotFoundException e) {
-			e.printStackTrace();
-		}
-	}
-	//´´½¨µÚ¶şÕÅÍ¼Æ¬²¢ÏÔÊ¾
-	public void CreatePhotoByImageView() {
-		try {
-		    Bitmap createBmp = Bitmap.createBitmap(bmp.getWidth(), bmp.getHeight(), bmp.getConfig());
-	    	Canvas canvas = new Canvas(createBmp); //»­²¼ ´«ÈëÎ»Í¼ÓÃÓÚ»æÖÆ
-	    	Paint paint = new Paint(); //»­Ë¢ ¸Ä±äÑÕÉ« ¶Ô±È¶ÈµÈÊôĞÔ
-	    	canvas.drawBitmap(bmp, 0, 0, paint);    //´íÎó:Ã»ÓĞÍ¼Æ¬ ÒòÎª²ÎÊıbmpĞ´³ÉcreateBmp
-	    	imageCreate.setImageBitmap(createBmp);
-	    	textview2.setVisibility(View.VISIBLE);
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	//ËõĞ¡Í¼Æ¬
-	private void SmallPicture() {
-		Matrix matrix = new Matrix();
-		//Ëõ·ÅÇø¼ä 0.5-1.0
-		if(smallbig>0.5f)
-			smallbig=smallbig-0.1f;
-		else
-			smallbig=0.5f;
-		//x y×ø±êÍ¬Ê±Ëõ·Å
-		matrix.setScale(smallbig,smallbig,bmp.getWidth()/2,bmp.getHeight()/2); 
-		Bitmap createBmp = Bitmap.createBitmap(bmp.getWidth(), bmp.getHeight(), bmp.getConfig());
-		Canvas canvas = new Canvas(createBmp); //»­²¼ ´«ÈëÎ»Í¼ÓÃÓÚ»æÖÆ
-		Paint paint = new Paint(); //»­Ë¢ ¸Ä±äÑÕÉ« ¶Ô±È¶ÈµÈÊôĞÔ
-	    	canvas.drawBitmap(bmp, matrix, paint);
-	    	imageCreate.setBackgroundColor(Color.RED);
-	    	imageCreate.setImageBitmap(createBmp);
-	    	textview2.setVisibility(View.VISIBLE);
-	    }
-	  //·Å´óÍ¼Æ¬
-	private void BigPicture() {
-		Matrix matrix = new Matrix();
-		//Ëõ·ÅÇø¼ä 0.5-1.0
-		if(smallbig<1.5f)
-			smallbig=smallbig+0.1f;
-		else
-			smallbig=1.5f;
-		//x y×ø±êÍ¬Ê±Ëõ·Å
-		matrix.setScale(smallbig,smallbig,bmp.getWidth()/2,bmp.getHeight()/2); 
-		Bitmap createBmp = Bitmap.createBitmap(bmp.getWidth(), bmp.getHeight(), bmp.getConfig());
-		Canvas canvas = new Canvas(createBmp); 
-		Paint paint = new Paint(); 
-		canvas.drawBitmap(bmp, matrix, paint);
-		imageCreate.setBackgroundColor(Color.RED);
-		imageCreate.setImageBitmap(createBmp);
-		textview2.setVisibility(View.VISIBLE);
-	}
-	//Ğı×ªÍ¼Æ¬
-	private void TurnPicture() {
-		Matrix matrix = new Matrix();
-		turnRotate=turnRotate+15;
-		//Ñ¡Ôñ½Ç¶È ÈÄ(0,0)µãÑ¡Ôñ ÕıÊıË³Ê±Õë ¸ºÊıÄæÊ±Õë ÖĞĞÄĞı×ª
-		matrix.setRotate(turnRotate,bmp.getWidth()/2,bmp.getHeight()/2); 
-		Bitmap createBmp = Bitmap.createBitmap(bmp.getWidth(), bmp.getHeight(), bmp.getConfig());
-		Canvas canvas = new Canvas(createBmp); 
-		Paint paint = new Paint(); 
-		canvas.drawBitmap(bmp, matrix, paint);
-		imageCreate.setBackgroundColor(Color.RED);
-		imageCreate.setImageBitmap(createBmp);
-		textview2.setVisibility(View.VISIBLE);
-	}
-	//¸Ä±äÍ¼Ïñ±¥ºÍ¶È
-	private void SaturationPicture() {
-		//ÉèÖÃ±¥ºÍ¶È 0±íÊ¾»Ò¶ÈÍ¼Ïñ ´óÓÚ1±¥ºÍ¶ÈÔö¼Ó 0-1±¥ºÍ¶È¼õĞ¡
-		ColorMatrix cm = new ColorMatrix();
-		cm.setSaturation(saturation);
-		Paint paint = new Paint(); 
-		paint.setColorFilter(new ColorMatrixColorFilter(cm));
-		//ÏÔÊ¾Í¼Æ¬
-		Matrix matrix = new Matrix();
-		Bitmap createBmp = Bitmap.createBitmap(bmp.getWidth(), bmp.getHeight(), bmp.getConfig());
-		Canvas canvas = new Canvas(createBmp); 
-		canvas.drawBitmap(bmp, matrix, paint);
-		imageCreate.setImageBitmap(createBmp);
-		textview2.setVisibility(View.VISIBLE);
-		saturation=saturation+0.1f;
-		if(saturation>=1.5f) {
-			saturation=0f;
-		}
-	}
-	//ÉèÖÃÍ¼Æ¬¶Ô±È¶È
-	private void ContrastPicture() {
-		ColorMatrix cm = new ColorMatrix();
-		float brightness = -25;  //ÁÁ¶È
-		float contrast = 2;        //¶Ô±È¶È
-		cm.set(new float[] {
-			contrast, 0, 0, 0, brightness,
-			0, contrast, 0, 0, brightness,
-			0, 0, contrast, 0, brightness,
-			0, 0, 0, contrast, 0
-		});
-		Paint paint = new Paint(); 
-		paint.setColorFilter(new ColorMatrixColorFilter(cm));
-		//ÏÔÊ¾Í¼Æ¬
-		Matrix matrix = new Matrix();
-		Bitmap createBmp = Bitmap.createBitmap(bmp.getWidth(), bmp.getHeight(), bmp.getConfig());
-		Canvas canvas = new Canvas(createBmp); 
-		canvas.drawBitmap(bmp, matrix, paint);
-		imageCreate.setImageBitmap(createBmp);
-		textview2.setVisibility(View.VISIBLE);
-	}
+    //æ˜¾ç¤ºä¸¤å¼ å›¾ç‰‡
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode==RESULT_OK) {
+            ShowPhotoByImageView(data);     //æ˜¾ç¤ºç…§ç‰‡
+            CreatePhotoByImageView();          //åˆ›å»ºå›¾ç‰‡
+        }
+    }
+    //è‡ªå®šä¹‰å‡½æ•° æ˜¾ç¤ºæ‰“å¼€çš„ç…§ç‰‡åœ¨ImageView1ä¸­
+    public void ShowPhotoByImageView(Intent data) {
+        Uri imageFileUri = data.getData();
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        int width = dm.widthPixels;    //æ‰‹æœºå±å¹•æ°´å¹³åˆ†è¾¨ç‡
+        int height = dm.heightPixels;  //æ‰‹æœºå±å¹•å‚ç›´åˆ†è¾¨ç‡
+        Log.v("height", ""+height );
+        Log.v("width", ""+width);
+        try {
+            // Load up the image's dimensions not the image itself
+            BitmapFactory.Options bmpFactoryOptions = new BitmapFactory.Options();
+            bmpFactoryOptions.inJustDecodeBounds = true;
+            bmp = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageFileUri), null, bmpFactoryOptions);
+            int heightRatio = (int)Math.ceil(bmpFactoryOptions.outHeight/(float)height);
+            int widthRatio = (int)Math.ceil(bmpFactoryOptions.outWidth/(float)width);
+            Log.v("bmpheight", ""+bmpFactoryOptions.outHeight);
+            Log.v("bmpheight", ""+bmpFactoryOptions.outWidth);
+            if(heightRatio>1&&widthRatio>1) {
+                if(heightRatio>widthRatio) {
+                    bmpFactoryOptions.inSampleSize = heightRatio*2;
+                }
+                else {
+                    bmpFactoryOptions.inSampleSize = widthRatio*2;
+                }
+            }
+            //å›¾åƒçœŸæ­£è§£ç 
+            bmpFactoryOptions.inJustDecodeBounds = false;
+            bmp = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageFileUri), null, bmpFactoryOptions);
+            imageShow.setImageBitmap(bmp); //å°†å‰ªè£åç…§ç‰‡æ˜¾ç¤ºå‡ºæ¥
+            textview1.setVisibility(View.VISIBLE);
+        } catch(FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+    //åˆ›å»ºç¬¬äºŒå¼ å›¾ç‰‡å¹¶æ˜¾ç¤º
+    public void CreatePhotoByImageView() {
+        try {
+            Bitmap createBmp = Bitmap.createBitmap(bmp.getWidth(), bmp.getHeight(), bmp.getConfig());
+            Canvas canvas = new Canvas(createBmp); //ç”»å¸ƒ ä¼ å…¥ä½å›¾ç”¨äºç»˜åˆ¶
+            Paint paint = new Paint(); //ç”»åˆ· æ”¹å˜é¢œè‰² å¯¹æ¯”åº¦ç­‰å±æ€§
+            canvas.drawBitmap(bmp, 0, 0, paint);    //é”™è¯¯:æ²¡æœ‰å›¾ç‰‡ å› ä¸ºå‚æ•°bmpå†™æˆcreateBmp
+            imageCreate.setImageBitmap(createBmp);
+            textview2.setVisibility(View.VISIBLE);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //ç¼©å°å›¾ç‰‡
+    private void SmallPicture() {
+        Matrix matrix = new Matrix();
+        //ç¼©æ”¾åŒºé—´ 0.5-1.0
+        if(smallbig>0.5f)
+            smallbig=smallbig-0.1f;
+        else
+            smallbig=0.5f;
+        //x yåæ ‡åŒæ—¶ç¼©æ”¾
+        matrix.setScale(smallbig,smallbig,bmp.getWidth()/2,bmp.getHeight()/2);
+        Bitmap createBmp = Bitmap.createBitmap(bmp.getWidth(), bmp.getHeight(), bmp.getConfig());
+        Canvas canvas = new Canvas(createBmp); //ç”»å¸ƒ ä¼ å…¥ä½å›¾ç”¨äºç»˜åˆ¶
+        Paint paint = new Paint(); //ç”»åˆ· æ”¹å˜é¢œè‰² å¯¹æ¯”åº¦ç­‰å±æ€§
+        canvas.drawBitmap(bmp, matrix, paint);
+        imageCreate.setBackgroundColor(Color.RED);
+        imageCreate.setImageBitmap(createBmp);
+        textview2.setVisibility(View.VISIBLE);
+    }
+    //æ”¾å¤§å›¾ç‰‡
+    private void BigPicture() {
+        Matrix matrix = new Matrix();
+        //ç¼©æ”¾åŒºé—´ 0.5-1.0
+        if(smallbig<1.5f)
+            smallbig=smallbig+0.1f;
+        else
+            smallbig=1.5f;
+        //x yåæ ‡åŒæ—¶ç¼©æ”¾
+        matrix.setScale(smallbig,smallbig,bmp.getWidth()/2,bmp.getHeight()/2);
+        Bitmap createBmp = Bitmap.createBitmap(bmp.getWidth(), bmp.getHeight(), bmp.getConfig());
+        Canvas canvas = new Canvas(createBmp);
+        Paint paint = new Paint();
+        canvas.drawBitmap(bmp, matrix, paint);
+        imageCreate.setBackgroundColor(Color.RED);
+        imageCreate.setImageBitmap(createBmp);
+        textview2.setVisibility(View.VISIBLE);
+    }
+    //æ—‹è½¬å›¾ç‰‡
+    private void TurnPicture() {
+        Matrix matrix = new Matrix();
+        turnRotate=turnRotate+15;
+        //é€‰æ‹©è§’åº¦ é¥¶(0,0)ç‚¹é€‰æ‹© æ­£æ•°é¡ºæ—¶é’ˆ è´Ÿæ•°é€†æ—¶é’ˆ ä¸­å¿ƒæ—‹è½¬
+        matrix.setRotate(turnRotate,bmp.getWidth()/2,bmp.getHeight()/2);
+        Bitmap createBmp = Bitmap.createBitmap(bmp.getWidth(), bmp.getHeight(), bmp.getConfig());
+        Canvas canvas = new Canvas(createBmp);
+        Paint paint = new Paint();
+        canvas.drawBitmap(bmp, matrix, paint);
+        imageCreate.setBackgroundColor(Color.RED);
+        imageCreate.setImageBitmap(createBmp);
+        textview2.setVisibility(View.VISIBLE);
+    }
+    //æ”¹å˜å›¾åƒé¥±å’Œåº¦
+    private void SaturationPicture() {
+        //è®¾ç½®é¥±å’Œåº¦ 0è¡¨ç¤ºç°åº¦å›¾åƒ å¤§äº1é¥±å’Œåº¦å¢åŠ  0-1é¥±å’Œåº¦å‡å°
+        ColorMatrix cm = new ColorMatrix();
+        cm.setSaturation(saturation);
+        Paint paint = new Paint();
+        paint.setColorFilter(new ColorMatrixColorFilter(cm));
+        //æ˜¾ç¤ºå›¾ç‰‡
+        Matrix matrix = new Matrix();
+        Bitmap createBmp = Bitmap.createBitmap(bmp.getWidth(), bmp.getHeight(), bmp.getConfig());
+        Canvas canvas = new Canvas(createBmp);
+        canvas.drawBitmap(bmp, matrix, paint);
+        imageCreate.setImageBitmap(createBmp);
+        textview2.setVisibility(View.VISIBLE);
+        saturation=saturation+0.1f;
+        if(saturation>=1.5f) {
+            saturation=0f;
+        }
+    }
+    //è®¾ç½®å›¾ç‰‡å¯¹æ¯”åº¦
+    private void ContrastPicture() {
+        ColorMatrix cm = new ColorMatrix();
+        float brightness = -25;  //äº®åº¦
+        float contrast = 2;        //å¯¹æ¯”åº¦
+        cm.set(new float[] {
+                contrast, 0, 0, 0, brightness,
+                0, contrast, 0, 0, brightness,
+                0, 0, contrast, 0, brightness,
+                0, 0, 0, contrast, 0
+        });
+        Paint paint = new Paint();
+        paint.setColorFilter(new ColorMatrixColorFilter(cm));
+        //æ˜¾ç¤ºå›¾ç‰‡
+        Matrix matrix = new Matrix();
+        Bitmap createBmp = Bitmap.createBitmap(bmp.getWidth(), bmp.getHeight(), bmp.getConfig());
+        Canvas canvas = new Canvas(createBmp);
+        canvas.drawBitmap(bmp, matrix, paint);
+        imageCreate.setImageBitmap(createBmp);
+        textview2.setVisibility(View.VISIBLE);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        
+
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
@@ -288,7 +287,7 @@ public class MainActivity extends Activity {
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
+                                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             return rootView;
         }
